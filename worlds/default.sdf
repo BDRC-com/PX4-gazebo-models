@@ -8,65 +8,18 @@
     </physics>
     <gravity>0 0 -9.8</gravity>
     <magnetic_field>6e-06 2.3e-05 -4.2e-05</magnetic_field>
-    <atmosphere type="adiabatic"/>
+    <atmosphere type='adiabatic'/>
     <scene>
+      <ambient>0.8 0.5 1</ambient>
       <grid>false</grid>
-      <ambient>0.4 0.4 0.4 1</ambient>
-      <background>0.7 0.7 0.7 1</background>
-      <shadows>true</shadows>
+      <sky>
+        <clouds>true</clouds>
+      </sky>
+      <shadows>1</shadows>
     </scene>
-    <model name="ground_plane">
-      <static>true</static>
-      <link name="link">
-        <collision name="collision">
-          <geometry>
-            <plane>
-              <normal>0 0 1</normal>
-              <size>1 1</size>
-            </plane>
-          </geometry>
-          <surface>
-            <friction>
-              <ode/>
-            </friction>
-            <bounce/>
-            <contact/>
-          </surface>
-        </collision>
-        <visual name="visual">
-          <geometry>
-            <plane>
-              <normal>0 0 1</normal>
-              <size>500 500</size>
-            </plane>
-          </geometry>
-          <material>
-            <ambient>0.8 0.8 0.8 1</ambient>
-            <diffuse>0.8 0.8 0.8 1</diffuse>
-            <specular>0.8 0.8 0.8 1</specular>
-          </material>
-        </visual>
-        <pose>0 0 0 0 -0 0</pose>
-        <inertial>
-          <pose>0 0 0 0 -0 0</pose>
-          <mass>1</mass>
-          <inertia>
-            <ixx>1</ixx>
-            <ixy>0</ixy>
-            <ixz>0</ixz>
-            <iyy>1</iyy>
-            <iyz>0</iyz>
-            <izz>1</izz>
-          </inertia>
-        </inertial>
-        <enable_wind>false</enable_wind>
-      </link>
-      <pose>0 0 0 0 -0 0</pose>
-      <self_collide>false</self_collide>
-    </model>
-    <light name="sunUTC" type="directional">
+    <light name='sunUTC' type='directional'>
       <pose>0 0 500 0 -0 0</pose>
-      <cast_shadows>true</cast_shadows>
+      <cast_shadows>false</cast_shadows>
       <intensity>1</intensity>
       <direction>0.001 0.625 -0.78</direction>
       <diffuse>0.904 0.904 0.904 1</diffuse>
@@ -77,18 +30,236 @@
         <constant>1</constant>
         <quadratic>0</quadratic>
       </attenuation>
-      <spot>
-        <inner_angle>0</inner_angle>
-        <outer_angle>0</outer_angle>
-        <falloff>0</falloff>
-      </spot>
     </light>
+    <include>
+      <uri>
+        https://fuel.gazebosim.org/1.0/OpenRobotics/models/baylands
+      </uri>
+      <name>park</name>
+      <pose>205 155 -1 0 0 0</pose>
+    </include>
+    <include>
+      <uri>
+        https://fuel.gazebosim.org/1.0/OpenRobotics/models/Coast Water
+      </uri>
+      <pose>0 0 -2 0 0 0
+        <relative_to>park</relative_to>
+      </pose>
+    </include>
     <spherical_coordinates>
       <surface_model>EARTH_WGS84</surface_model>
       <world_frame_orientation>ENU</world_frame_orientation>
-      <latitude_deg>47.397971057728974</latitude_deg>
-      <longitude_deg> 8.546163739800146</longitude_deg>
-      <elevation>0</elevation>
+      <latitude_deg>37.412173071650805</latitude_deg>
+      <longitude_deg>-121.998878727967</longitude_deg>
+      <elevation>38</elevation>
     </spherical_coordinates>
+    <model name="hatchback_red">
+      <static>true</static>
+      <link name="link">
+        <collision name="collision">
+          <pose>12 -15 0.6 0 0 0</pose>
+          <geometry>
+            <mesh>
+              <scale>0.0254 0.0254 0.0254</scale>
+              <uri>/home/ros2/gz_models/hatchback_red/meshes/hatchback_red.obj</uri>
+            </mesh>
+          </geometry>
+        </collision>
+        <visual name="visual">
+          <pose>12 -15 0.6 0 0 0</pose>
+          <geometry>
+            <mesh>
+              <scale>0.0254 0.0254 0.0254</scale>
+              <uri>/home/ros2/gz_models/hatchback_red/meshes/hatchback_red.obj</uri>
+            </mesh>
+          </geometry>
+        </visual>
+      </link>
+    </model>
+    <model name="suv">
+      <static>true</static>
+      <link name="link">
+        <collision name="collision">
+          <pose>12 -25 0 0 0 0</pose>
+          <geometry>
+            <mesh>
+              <scale>0.06 0.06 0.06</scale>
+              <uri>model:///home/ros2/gz_models/SUV/meshes/suv.obj</uri>
+            </mesh>
+          </geometry>
+        </collision>
+        <visual name="visual">
+          <pose>12 -25 0 0 0 0</pose>
+          <geometry>
+            <mesh>
+              <scale>0.06 0.06 0.06</scale>
+              <uri>model:///home/ros2/gz_models/SUV/meshes/suv.obj</uri>
+            </mesh>
+          </geometry>
+        </visual>
+      </link>
+    </model>
+    <model name="pickup">
+      <static>true</static>
+      <link name="link">
+        <collision name="collision">
+          <pose>12 -35 0 0 0 0</pose>
+          <geometry>
+            <mesh>
+              <uri>/home/ros2/gz_models/Pickup/meshes/pickup.dae</uri>
+            </mesh>
+          </geometry>
+        </collision>
+        <visual name="visual">
+          <pose>12 -35 0 0 0 0</pose>
+          <geometry>
+            <mesh>
+              <uri>/home/ros2/gz_models/Pickup/meshes/pickup.dae</uri>
+            </mesh>
+          </geometry>
+        </visual>
+      </link>
+    </model>
+    <model name='TruckDelivery'>
+      <link name="body">
+        <pose>12 15 0.5 0 0 -1.57</pose>
+
+        <visual name="visual">
+          <geometry>
+            <mesh>
+              <uri>model:///home/ros2/gz_models/TruckDelivery/meshes/truck.obj</uri>
+            </mesh>
+          </geometry>
+        </visual>
+
+        <collision name="collision">
+          <geometry>
+            <mesh>
+              <uri>model:///home/ros2/gz_models/TruckDelivery/meshes/truck.obj</uri>
+            </mesh>
+          </geometry>
+        </collision>
+
+      </link>
+    </model>
+    <model name="person_walking">
+      <link name="link">
+        <inertial>
+          <pose>12 0 0.95 0 0 0</pose>
+          <mass>80.0</mass>
+          <inertia>
+            <ixx>27.82</ixx>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyy>24.88</iyy>
+            <iyz>0</iyz>
+            <izz>4.57</izz>
+          </inertia>
+        </inertial>
+
+        <collision name="bottom">
+          <pose>12 0 0.01 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>0.35 0.75 0.02</size>
+            </box>
+          </geometry>
+        </collision>
+
+        <collision name="person">
+          <pose>12 0 -0.02 0 0 0</pose>
+          <geometry>
+            <mesh>
+              <uri>model:///home/ros2/gz_models/Walking person/meshes/walking.dae</uri>
+            </mesh>
+          </geometry>
+        </collision>
+
+        <visual name="visual">
+          <pose>12 0 -0.02 0 0 0</pose>
+          <geometry>
+            <mesh>
+              <uri>model:///home/ros2/gz_models/Walking person/meshes/walking.dae</uri>
+            </mesh>
+          </geometry>
+        </visual>
+      </link>
+    </model>
+    <actor name="actor_walking">
+      <skin>
+        <filename>https://fuel.gazebosim.org/1.0/Mingfei/models/actor/tip/files/meshes/walk.dae</filename>
+        <scale>1.0</scale>
+      </skin>
+      <!-- 行走动画 -->
+      <animation name='walking'>
+        <filename>https://fuel.gazebosim.org/1.0/Mingfei/models/actor/tip/files/meshes/walk.dae</filename>
+        <interpolate_x>true</interpolate_x>
+      </animation>
+      <script>
+        <loop>true</loop>
+        <delay_start>0.0</delay_start>
+        <auto_start>true</auto_start>
+
+        <trajectory id="1" type="walking">
+          <!-- 起点: (0, 0, 1) 面向Y轴负方向 -->
+          <waypoint>
+            <time>0</time>
+            <pose>0 0 1.0 0 0 -1.5708</pose>
+          </waypoint>
+
+          <!-- 第一阶段: 向Y轴负方向移动8米 (8秒) -->
+          <waypoint>
+            <time>8</time>
+            <pose>0 -8 1.0 0 0 -1.5708</pose>
+          </waypoint>
+
+          <!-- 第二阶段: 左转60度并沿斜方向移动10米 -->
+          <waypoint>
+            <time>9</time>
+            <pose>0 -8 1.0 0 0 -0.5236</pose>
+          </waypoint>
+          <waypoint>
+            <time>19</time>
+            <pose>8.66 -13 1.0 0 0 -0.5236</pose>
+          </waypoint>
+
+          <!-- 第三阶段: 右转120度并沿新方向移动12米 -->
+          <waypoint>
+            <time>20</time>
+            <pose>8.66 -13 1.0 0 0 1.0472</pose>
+          </waypoint>
+          <waypoint>
+            <time>32</time>
+            <pose>19 -7 1.0 0 0 1.0472</pose>
+          </waypoint>
+
+          <!-- 第四阶段: 左转90度并沿X轴负方向移动15米 -->
+          <waypoint>
+            <time>33</time>
+            <pose>19 -7 1.0 0 0 2.3562</pose>
+          </waypoint>
+          <waypoint>
+            <time>48</time>
+            <pose>8.38 -0.12 1.0 0 0 2.3562</pose>
+          </waypoint>
+
+          <!-- 第五阶段: 左转135度并沿斜方向移动8米返回起点 -->
+          <waypoint>
+            <time>49</time>
+            <pose>8.38 -0.12 1.0 0 0 3.9269</pose>
+          </waypoint>
+          <waypoint>
+            <time>57</time>
+            <pose>0 0 1.0 0 0 3.9269</pose>
+          </waypoint>
+
+          <!-- 最后转向: 调整方向至初始状态，完成循环 -->
+          <waypoint>
+            <time>58</time>
+            <pose>0 0 1.0 0 0 -1.5708</pose>
+          </waypoint>
+        </trajectory>
+      </script>
+    </actor>
   </world>
 </sdf>
