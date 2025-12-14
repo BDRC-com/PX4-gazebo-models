@@ -53,138 +53,27 @@
       <longitude_deg>-121.998878727967</longitude_deg>
       <elevation>38</elevation>
     </spherical_coordinates>
-    <model name="hatchback_red">
-      <static>true</static>
-      <link name="link">
-        <collision name="collision">
-          <pose>12 -15 0.6 0 0 0</pose>
-          <geometry>
-            <mesh>
-              <scale>0.0254 0.0254 0.0254</scale>
-              <uri>/home/ros2/gz_models/hatchback_red/meshes/hatchback_red.obj</uri>
-            </mesh>
-          </geometry>
-        </collision>
-        <visual name="visual">
-          <pose>12 -15 0.6 0 0 0</pose>
-          <geometry>
-            <mesh>
-              <scale>0.0254 0.0254 0.0254</scale>
-              <uri>/home/ros2/gz_models/hatchback_red/meshes/hatchback_red.obj</uri>
-            </mesh>
-          </geometry>
-        </visual>
-      </link>
-    </model>
-    <model name="suv">
-      <static>true</static>
-      <link name="link">
-        <collision name="collision">
-          <pose>12 -25 0 0 0 0</pose>
-          <geometry>
-            <mesh>
-              <scale>0.06 0.06 0.06</scale>
-              <uri>model:///home/ros2/gz_models/SUV/meshes/suv.obj</uri>
-            </mesh>
-          </geometry>
-        </collision>
-        <visual name="visual">
-          <pose>12 -25 0 0 0 0</pose>
-          <geometry>
-            <mesh>
-              <scale>0.06 0.06 0.06</scale>
-              <uri>model:///home/ros2/gz_models/SUV/meshes/suv.obj</uri>
-            </mesh>
-          </geometry>
-        </visual>
-      </link>
-    </model>
-    <model name="pickup">
-      <static>true</static>
-      <link name="link">
-        <collision name="collision">
-          <pose>12 -35 0 0 0 0</pose>
-          <geometry>
-            <mesh>
-              <uri>/home/ros2/gz_models/Pickup/meshes/pickup.dae</uri>
-            </mesh>
-          </geometry>
-        </collision>
-        <visual name="visual">
-          <pose>12 -35 0 0 0 0</pose>
-          <geometry>
-            <mesh>
-              <uri>/home/ros2/gz_models/Pickup/meshes/pickup.dae</uri>
-            </mesh>
-          </geometry>
-        </visual>
-      </link>
-    </model>
-    <model name='TruckDelivery'>
-      <link name="body">
-        <pose>12 15 0.5 0 0 -1.57</pose>
 
-        <visual name="visual">
-          <geometry>
-            <mesh>
-              <uri>model:///home/ros2/gz_models/TruckDelivery/meshes/truck.obj</uri>
-            </mesh>
-          </geometry>
-        </visual>
+    <include>
+      <uri>https://fuel.gazebosim.org/1.0/OpenRobotics/models/Prius Hybrid</uri>
+      <name>prius_hybrid</name>
+      <pose>12 -15 0 0 0 0</pose>
+    </include>
 
-        <collision name="collision">
-          <geometry>
-            <mesh>
-              <uri>model:///home/ros2/gz_models/TruckDelivery/meshes/truck.obj</uri>
-            </mesh>
-          </geometry>
-        </collision>
+    <include>
+      <uri>https://fuel.gazebosim.org/1.0/OpenRobotics/models/SUV</uri>
+      <name>suv</name>
+      <pose>12 -25 0 0 0 0</pose>
+    </include>
 
-      </link>
-    </model>
-    <model name="person_walking">
-      <link name="link">
-        <inertial>
-          <pose>12 0 0.95 0 0 0</pose>
-          <mass>80.0</mass>
-          <inertia>
-            <ixx>27.82</ixx>
-            <ixy>0</ixy>
-            <ixz>0</ixz>
-            <iyy>24.88</iyy>
-            <iyz>0</iyz>
-            <izz>4.57</izz>
-          </inertia>
-        </inertial>
+    <include>
+      <uri>https://fuel.gazebosim.org/1.0/OpenRobotics/models/Pickup</uri>
+      <name>pickup</name>
+      <pose>12 -35 0 0 0 0</pose>
+    </include>
 
-        <collision name="bottom">
-          <pose>12 0 0.01 0 0 0</pose>
-          <geometry>
-            <box>
-              <size>0.35 0.75 0.02</size>
-            </box>
-          </geometry>
-        </collision>
 
-        <collision name="person">
-          <pose>12 0 -0.02 0 0 0</pose>
-          <geometry>
-            <mesh>
-              <uri>model:///home/ros2/gz_models/Walking person/meshes/walking.dae</uri>
-            </mesh>
-          </geometry>
-        </collision>
 
-        <visual name="visual">
-          <pose>12 0 -0.02 0 0 0</pose>
-          <geometry>
-            <mesh>
-              <uri>model:///home/ros2/gz_models/Walking person/meshes/walking.dae</uri>
-            </mesh>
-          </geometry>
-        </visual>
-      </link>
-    </model>
     <actor name="actor_walking">
       <skin>
         <filename>https://fuel.gazebosim.org/1.0/Mingfei/models/actor/tip/files/meshes/walk.dae</filename>
@@ -201,62 +90,62 @@
         <auto_start>true</auto_start>
 
         <trajectory id="1" type="walking">
-          <!-- 起点: (0, 0, 1) 面向Y轴负方向 -->
+          <!-- 起点: (10, 0, 1) 面向Y轴负方向 -->
           <waypoint>
             <time>0</time>
-            <pose>0 0 1.0 0 0 -1.5708</pose>
+            <pose>10 0 1.0 0 0 -1.5708</pose>
           </waypoint>
 
           <!-- 第一阶段: 向Y轴负方向移动8米 (8秒) -->
           <waypoint>
             <time>8</time>
-            <pose>0 -8 1.0 0 0 -1.5708</pose>
+            <pose>10 -8 1.0 0 0 -1.5708</pose>
           </waypoint>
 
           <!-- 第二阶段: 左转60度并沿斜方向移动10米 -->
           <waypoint>
             <time>9</time>
-            <pose>0 -8 1.0 0 0 -0.5236</pose>
+            <pose>10 -8 1.0 0 0 -0.5236</pose>
           </waypoint>
           <waypoint>
             <time>19</time>
-            <pose>8.66 -13 1.0 0 0 -0.5236</pose>
+            <pose>18.66 -13 1.0 0 0 -0.5236</pose>
           </waypoint>
 
           <!-- 第三阶段: 右转120度并沿新方向移动12米 -->
           <waypoint>
             <time>20</time>
-            <pose>8.66 -13 1.0 0 0 1.0472</pose>
+            <pose>18.66 -13 1.0 0 0 1.0472</pose>
           </waypoint>
           <waypoint>
             <time>32</time>
-            <pose>19 -7 1.0 0 0 1.0472</pose>
+            <pose>29 -7 1.0 0 0 1.0472</pose>
           </waypoint>
 
           <!-- 第四阶段: 左转90度并沿X轴负方向移动15米 -->
           <waypoint>
             <time>33</time>
-            <pose>19 -7 1.0 0 0 2.3562</pose>
+            <pose>29 -7 1.0 0 0 2.3562</pose>
           </waypoint>
           <waypoint>
             <time>48</time>
-            <pose>8.38 -0.12 1.0 0 0 2.3562</pose>
+            <pose>18.38 -0.12 1.0 0 0 2.3562</pose>
           </waypoint>
 
           <!-- 第五阶段: 左转135度并沿斜方向移动8米返回起点 -->
           <waypoint>
             <time>49</time>
-            <pose>8.38 -0.12 1.0 0 0 3.9269</pose>
+            <pose>18.38 -0.12 1.0 0 0 3.9269</pose>
           </waypoint>
           <waypoint>
             <time>57</time>
-            <pose>0 0 1.0 0 0 3.9269</pose>
+            <pose>10 0 1.0 0 0 3.9269</pose>
           </waypoint>
 
           <!-- 最后转向: 调整方向至初始状态，完成循环 -->
           <waypoint>
             <time>58</time>
-            <pose>0 0 1.0 0 0 -1.5708</pose>
+            <pose>10 0 1.0 0 0 -1.5708</pose>
           </waypoint>
         </trajectory>
       </script>
